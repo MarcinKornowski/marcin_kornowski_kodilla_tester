@@ -2,6 +2,7 @@ public class FirstClass {
 
     public static void main(String[] args) {
 
+        //Notebook
         NoteBook notebook = new NoteBook(600, 2000, 2020);
         System.out.println("Weight of the notebook is " + notebook.weight + " grams."
                 + "\nThe price of the notebook is " + notebook.price + "$"
@@ -26,6 +27,12 @@ public class FirstClass {
         oldNoteBook.checkPrice();
         oldNoteBook.checkYear();
 
+
+        //Check leap year
+        LeapYear checkLeapYear = new LeapYear(1400);
+
+        boolean showLeapYear = checkLeapYear.getLeap();
+        System.out.println(showLeapYear);
 
     }
 
