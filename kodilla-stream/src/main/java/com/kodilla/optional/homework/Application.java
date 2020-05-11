@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Application {
+
     public static void main(String[] args) {
 
         List<Student> students = new ArrayList<>();
@@ -20,8 +21,11 @@ public class Application {
         students.add(new Student("Student11", null));
         students.add(new Student("Student12", null));
 
-        for(Student student : students) {
-            System.out.println("Student: " + student.getStudentName() + ", Teacher:" + student.getTeacher().getTeacherName());
+        for(Student student1 : students) {
+
+            System.out.println("Student: " + student1.getStudentName() +
+                    "Teacher: " + student1.getTeacher().getTeacherName());
         }
+
     }
 }

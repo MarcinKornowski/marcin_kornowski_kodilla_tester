@@ -16,14 +16,9 @@ public class Student {
     }
 
     public Teacher getTeacher() {
-        if(teacher == null) {
-            Teacher teacherNull = new Teacher("<undefined>");
-            Optional<Teacher> getTeacherNull = Optional.ofNullable(teacherNull);
-            String teacherName = getTeacherNull.orElse(new Teacher("")).getTeacherName();
-            return teacherNull;
-        } else {
-            return teacher;
-        }
+        Optional<Teacher> optionalTeacher = Optional.ofNullable(teacher);
+        Teacher teacherName = optionalTeacher.orElse(new Teacher("<undefined>"));
+        return teacherName;
     }
 
 }
