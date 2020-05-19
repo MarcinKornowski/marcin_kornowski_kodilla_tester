@@ -69,21 +69,21 @@ public class GamblingMachineTestSuite {
         int number6
     ) throws InvalidNumbersException {
 
-        Set<Integer> inputs = new HashSet<>();
-        inputs.add(number1);
-        inputs.add(number2);
-        inputs.add(number3);
-        inputs.add(number4);
-        inputs.add(number5);
-        inputs.add(number6);
+        Set<Integer> input = new HashSet<>();
+        input.add(number1);
+        input.add(number2);
+        input.add(number3);
+        input.add(number4);
+        input.add(number5);
+        input.add(number6);
 
-        inputs.stream().anyMatch(input -> input < 1);
+        input.stream().anyMatch(u -> u < 1);
 
         GamblingMachine gamblingMachine = new GamblingMachine();
 
-        int checkNum = gamblingMachine.howManyWins(inputs);
+        int checkNum = gamblingMachine.howManyWins(input);
 
-        assertThrows(InvalidNumbersException.class, () -> gamblingMachine.howManyWins(inputs));
+        assertThrows(InvalidNumbersException.class, () -> gamblingMachine.howManyWins(input));
 
     }
 
