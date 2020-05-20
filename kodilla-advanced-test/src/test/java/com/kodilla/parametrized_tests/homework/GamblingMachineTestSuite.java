@@ -20,7 +20,7 @@ public class GamblingMachineTestSuite {
           int number4,
           int number5,
           int number6) throws InvalidNumbersException {
-
+        //given
         Set<Integer> input = new HashSet<>();
         input.add(number1);
         input.add(number2);
@@ -30,7 +30,9 @@ public class GamblingMachineTestSuite {
         input.add(number6);
 
         GamblingMachine gamblingMachine = new GamblingMachine();
+        //when
         int checkNum = gamblingMachine.howManyWins(input);
+        //then
         assertTrue(checkNum >= 0 && checkNum <= 6);
     }
 
@@ -44,7 +46,7 @@ public class GamblingMachineTestSuite {
           int number5,
           int number6
     ) throws InvalidNumbersException {
-
+        //given
         Set<Integer> input = new HashSet<>();
         input.add(number1);
         input.add(number2);
@@ -53,13 +55,13 @@ public class GamblingMachineTestSuite {
         input.add(number5);
 
         GamblingMachine gamblingMachine = new GamblingMachine();
-
+        //then
         assertThrows(InvalidNumbersException.class, () -> gamblingMachine.howManyWins(input));
 
     }
 
     @ParameterizedTest
-    @CsvFileSource(resources = "/GamblingMachineWithFiveNum.csv", numLinesToSkip = 1)
+    @CsvFileSource(resources = "/GamblingMachineWithNegativeNumber.csv", numLinesToSkip = 1)
 
     public void shouldReturnExceptionWhenNegativeNumberIsProvided(int number1,
         int number2,
@@ -68,7 +70,7 @@ public class GamblingMachineTestSuite {
         int number5,
         int number6
     ) throws InvalidNumbersException {
-
+        //given
         Set<Integer> input = new HashSet<>();
         input.add(number1);
         input.add(number2);
@@ -77,12 +79,8 @@ public class GamblingMachineTestSuite {
         input.add(number5);
         input.add(number6);
 
-        input.stream().anyMatch(u -> u < 1);
-
         GamblingMachine gamblingMachine = new GamblingMachine();
-
-        int checkNum = gamblingMachine.howManyWins(input);
-
+        //then
         assertThrows(InvalidNumbersException.class, () -> gamblingMachine.howManyWins(input));
 
     }
