@@ -2,19 +2,20 @@ package com.kodilla.parametrized_tests.homework;
 
 import org.junit.jupiter.params.provider.Arguments;
 
-import java.util.List;
+import java.util.stream.Stream;
 
 public class PersonSources{
-    static List<Arguments> getPersonForTesting() {
-        return List.of(
-                Arguments.of(new Person(1.55, 45), 18.75),
-                Arguments.of(new Person(1.60, 55), 21.48),
-                Arguments.of(new Person(1.65, 60), 22.05),
-                Arguments.of(new Person(1.70, 65), 23.89),
-                Arguments.of(new Person(1.75, 70), 22.87),
-                Arguments.of(new Person(1.80, 75), 23.14),
-                Arguments.of(new Person(1.85, 85), 24.85),
-                Arguments.of(new Person(1.90, 95), 26.31)
+    static Stream<Arguments> getPersonForTesting() {
+        return Stream.of(
+                Arguments.of(1.60, 40, "Severely underweight"),
+                Arguments.of(1.60, 45, "Underweight"),
+                Arguments.of(1.60, 50, "Normal (healthy weight)"),
+                Arguments.of(1.60, 65, "Overweight"),
+                Arguments.of(1.60, 80, "Obese Class I (Moderately obese)"),
+                Arguments.of(1.60, 90, "Obese Class II (Severely obese)"),
+                Arguments.of(1.60, 110, "Obese Class III (Very severely obese)"),
+                Arguments.of(1.60, 120, "Obese Class IV (Morbidly Obese)"),
+                Arguments.of(1.60, 140, "Obese Class V (Super Obese)")
         );
     }
 }
