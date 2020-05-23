@@ -4,10 +4,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
-import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNull;
 
 
 public class ShopTestSuite {
@@ -34,40 +32,21 @@ public class ShopTestSuite {
     @Test
     public void shouldReturnExpectedScopeOfOrdersValue() {
         //when
-        List<Order> ordersExpectedValues = shop.getOrdersScope(30, 90);
+        int ordersActual = shop.getOrdersScope(30, 110).size();
         //then
-        assertEquals(ordersExpectedValues, shop.getOrdersScope(30, 90));
-    }
-
-    //Sprawdza czy zwraca null gdy któraś z wartości jest ujemna
-    @Test
-    public void shouldReturnNullWhenPassingNegativeValue_LowestNegative() {
-        //When
-        List<Order> result = shop.getOrdersScope(-30, 90);
-        //then
-        assertNull(result);
-    }
-
-    //Sprawdza czy zwraca null gdy któraś z wartości jest ujemna
-    @Test
-    public void shouldReturnNullWhenPassingNegativeValue_highestNegative() {
-        //When
-        List<Order> result = shop.getOrdersScope(30, -90);
-        //then
-        assertNull(result);
+        assertEquals(3, ordersActual);
     }
 
     //Sprawdza czy na podstawie podanych dat zawraca odpowiednie zamówienia
     @Test
     public void shouldReturnExpectedScopeOfOrdersDate() {
         //when
-        List<Order> datesExpected = shop.getDatesScope(
+        int datesActual = shop.getDatesScope(
                 LocalDate.of(2020,05,10),
-                LocalDate.of(2020,06,05));
+                LocalDate.of(2020,06,05))
+                .size();
         //then
-        assertEquals(datesExpected, shop.getDatesScope(
-                LocalDate.of(2020,05,10),
-                LocalDate.of(2020,06,05)));
+        assertEquals(4, datesActual);
     }
 
     //Sprawdza ilośc zamówień w kolekcji
@@ -76,7 +55,7 @@ public class ShopTestSuite {
         //given
         int numOfOrdersInShop = shop.getShopSize();
         //than
-        assertEquals(7, shop.getShopSize());
+        assertEquals(7, numOfOrdersInShop);
     }
 
     //sumuje wartośc wszystkich zamówień

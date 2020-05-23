@@ -27,16 +27,11 @@ public class Shop {
 
     //filtruje zamówienia z okreslenego zakresu wartości
     public List<Order> getOrdersScope(double lowest, double highest) {
-        if(lowest <= 0 && highest <= 0)
         return orders
                 .stream()
                 .filter(u -> u.getOrderValue() >= lowest && u.getOrderValue() <= highest)
                 .collect(Collectors.toList());
-        return null;
     }
-    public static double getOrder(Order order) {
-            return order.getOrderValue();
-        }
 
     //Zwraca ilośc zamowień w kolekcji
     public int getShopSize() {
