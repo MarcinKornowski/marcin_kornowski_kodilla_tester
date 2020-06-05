@@ -9,30 +9,26 @@ import java.time.LocalTime;
 @Configuration
 public class CarPicker {
 
-
     @Bean
     public Car pickCar() {
         Car car;
-        LocalTime time = LocalTime.of(21, 00);
+        LocalTime time = LocalTime.now();
+        LocalDate date = LocalDate.now();
+        int month = date.getMonthValue();
+        int day = date.getDayOfMonth();
 
-        LocalDate date = LocalDate.of(2020, 7, 2);
-        //LocalDate date = LocalDate.now();
-
-        LocalDate summerStart = LocalDate.of(2020, 6, 1);
-        LocalDate summerEnd = LocalDate.of(2020, 9, 30);
-        LocalDate winterStart = LocalDate.of(2020, 12, 1);
-        LocalDate winterEnd = LocalDate.of(2021, 03, 30);
-
-        if (date.isAfter(summerStart) && date.isBefore(summerEnd)) {
-            car = new Cabrio(time);
-        } else if (date.isAfter(winterStart) && date.isBefore(winterEnd)) {
+        if(month == 1 || month == 2 || (month == 3 && day <= 20) || (month == 12 && day >= 21)) {
             car = new Suv(time);
+        } else if(month == 7 || month == 8 || (month == 6 && day >= 20) || (month == 9 && day <= 22)) {
+            car = new Cabrio(time);
         } else {
             car = new Sedan(time);
         }
         return car;
+
     }
 
 }
+
 
 

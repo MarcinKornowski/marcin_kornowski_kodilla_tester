@@ -19,7 +19,6 @@ public class Sedan implements Car{
         }
     }
 
-    @Override
     public String getCarType() {
         return "Sedan";
     }
