@@ -46,10 +46,10 @@ public class CarPickerTestSuite {
         ApplicationContext context = new AnnotationConfigApplicationContext("com.kodilla.spring");
         Car car = (Car) context.getBean("pickCar");
         //When
-        String showCar = car.getCarType();
+        String compareCars = car.getCarType();
         boolean showLights = car.hasHeadLightsTurnedOn();
         //Than
-        Assertions.assertEquals(expectedCar, showCar);
+        Assertions.assertEquals(expectedCar, compareCars);
         Assertions.assertEquals(expectedLights, showLights);
     }
 }

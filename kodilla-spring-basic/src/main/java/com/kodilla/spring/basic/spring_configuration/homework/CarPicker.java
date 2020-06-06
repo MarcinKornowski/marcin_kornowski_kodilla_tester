@@ -9,6 +9,9 @@ import java.time.LocalTime;
 @Configuration
 public class CarPicker {
 
+//    public LocalDate date;
+//    public LocalTime time;
+
     @Bean
     public Car pickCar() {
         Car car;
