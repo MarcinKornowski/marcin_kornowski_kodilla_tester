@@ -9,10 +9,7 @@ import java.time.LocalTime;
 @Configuration
 public class CarPicker {
 
-//    public LocalDate date;
-//    public LocalTime time;
-
-    @Bean
+    @Bean()
     public Car pickCar() {
         Car car;
         LocalTime time = LocalTime.now();
@@ -30,7 +27,6 @@ public class CarPicker {
         return car;
 
     }
-
 }
 
 
