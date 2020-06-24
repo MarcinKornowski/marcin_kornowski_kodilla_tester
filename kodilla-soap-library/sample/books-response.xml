@@ -1,0 +1,14 @@
+<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/">
+    <SOAP-ENV:Header/>
+    <SOAP-ENV:Body>
+        <ns2:getBookResponse xmlns:ns2="http://kodilla.com/books/soap">
+            <ns2:book>
+                <ns2:bookNumber>1CR</ns2:bookNumber>
+                <ns2:title>Title3</ns2:title>
+                <ns2:author>Author3</ns2:author>
+                <ns2:pubYear>2010</ns2:pubYear>
+                <ns2:genre>CRIMINAL</ns2:genre>
+            </ns2:book>
+        </ns2:getBookResponse>
+    </SOAP-ENV:Body>
+</SOAP-ENV:Envelope>
