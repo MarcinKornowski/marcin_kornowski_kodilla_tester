@@ -44,4 +44,5 @@ include 'kodilla-soap'
 include 'untitled1'
 include 'kodilla-soap-library'
 include 'kodilla-sellenium'
+include 'kodilla-cucumber'
 
