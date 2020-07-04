@@ -5,7 +5,10 @@ Feature: Prevent Withdrawal
     Then I should receive $ <get> from my wallet
     Examples:
       | ask |get |
+      | -50 | 0  |
+      | 0 | 0 |
+      | 100 | 100|
       | 199 | 199 |
       | 200 |200 |
       | 201 |0 |
-      | 0 | 0 |
+      | 300 | 0 |
