@@ -6,30 +6,39 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class BankTestSuite {
 
+    CashMachine cashMachine1 = new CashMachine();
+    CashMachine cashMachine2 = new CashMachine();
+    CashMachine cashMachine3 = new CashMachine();
+    CashMachine cashMachine4 = new CashMachine();
+
+    Bank bank = new Bank(new CashMachine[]{cashMachine1, cashMachine2, cashMachine3, cashMachine4});
+
     //Całkowity balans ze wszystkich bankomatów------------------------------------
     @Test
     public void shouldShowTotalBalanceFromAllCasMachines() {
-        Bank bank = new Bank();
 
-        bank.transactionsCashMachineOne(100);
-        bank.transactionsCashMachineOne(-100);
-        bank.transactionsCashMachineOne(100);
+        //Given
+        cashMachine1.makeTransaction(100);
+        cashMachine1.makeTransaction(-100);
+        cashMachine1.makeTransaction(100);
 
-        bank.transactionsCashMachineTwo(100);
-        bank.transactionsCashMachineTwo(-100);
-        bank.transactionsCashMachineTwo(100);
+        cashMachine2.makeTransaction(100);
+        cashMachine2.makeTransaction(-100);
+        cashMachine2.makeTransaction(100);
 
+        cashMachine3.makeTransaction(100);
+        cashMachine3.makeTransaction(-100);
+        cashMachine3.makeTransaction(50);
 
-        bank.transactionsCashMachineThree(100);
-        bank.transactionsCashMachineThree(-100);
-        bank.transactionsCashMachineOne(-50);
+        cashMachine4.makeTransaction(100);
+        cashMachine4.makeTransaction(100);
+        cashMachine4.makeTransaction(-100);
 
-        bank.transactionsCashMachineFour(100);
-        bank.transactionsCashMachineFour(100);
-        bank.transactionsCashMachineThree(-100);
+        //When
+        double totalBalance = bank.totalBalance();
 
-        assertEquals(250, bank.totalBalance());
-
+        //Than
+        assertEquals(350, totalBalance);
     }
 
 
@@ -38,200 +47,221 @@ public class BankTestSuite {
     @Test
     public void shouldShowAverageAmountPaidIn() {
 
-        Bank bank = new Bank();
+        //Given
+        cashMachine1.makeTransaction(100);
+        cashMachine1.makeTransaction(-100);
+        cashMachine1.makeTransaction(100);
 
-        bank.transactionsCashMachineOne(100);
-        bank.transactionsCashMachineOne(-100);
-        bank.transactionsCashMachineOne(100);
+        cashMachine2.makeTransaction(100);
+        cashMachine2.makeTransaction(-100);
+        cashMachine2.makeTransaction(100);
 
-        bank.transactionsCashMachineTwo(100);
-        bank.transactionsCashMachineTwo(-100);
-        bank.transactionsCashMachineTwo(100);
+        cashMachine3.makeTransaction(100);
+        cashMachine3.makeTransaction(-100);
+        cashMachine3.makeTransaction(-50);
 
+        cashMachine4.makeTransaction(100);
+        cashMachine4.makeTransaction(100);
+        cashMachine4.makeTransaction(100);
 
-        bank.transactionsCashMachineThree(100);
-        bank.transactionsCashMachineThree(-100);
-        bank.transactionsCashMachineOne(-50);
+        //When
+        double averageAllDeposits = bank.getAverageAllDeposits();
 
-        bank.transactionsCashMachineFour(100);
-        bank.transactionsCashMachineFour(100);
-        bank.transactionsCashMachineThree(-100);
-
-        assertEquals(100, bank.getAverageAllDeposits(), 0.01);
+        //Than
+        assertEquals(100, averageAllDeposits);
     }
 
     //zero gdy brak wpłat
     @Test
     public void shouldShowZeroWhenNoDeposits() {
 
-        Bank bank = new Bank();
+        //Given
+        cashMachine1.makeTransaction(-100);
+        cashMachine1.makeTransaction(-100);
+        cashMachine1.makeTransaction(-100);
 
-        bank.transactionsCashMachineOne(-100);
-        bank.transactionsCashMachineOne(-100);
-        bank.transactionsCashMachineOne(-100);
+        cashMachine2.makeTransaction(-100);
+        cashMachine2.makeTransaction(-100);
+        cashMachine2.makeTransaction(-100);
 
-        bank.transactionsCashMachineTwo(-100);
-        bank.transactionsCashMachineTwo(-100);
-        bank.transactionsCashMachineTwo(-100);
+        cashMachine3.makeTransaction(-100);
+        cashMachine3.makeTransaction(-100);
+        cashMachine3.makeTransaction(-50);
 
+        cashMachine4.makeTransaction(-100);
+        cashMachine4.makeTransaction(-100);
+        cashMachine4.makeTransaction(-100);
 
-        bank.transactionsCashMachineThree(-100);
-        bank.transactionsCashMachineThree(-100);
-        bank.transactionsCashMachineOne(-50);
+        //When
+        double averageAllDeposits = bank.getAverageAllDeposits();
 
-        bank.transactionsCashMachineFour(-100);
-        bank.transactionsCashMachineFour(-100);
-        bank.transactionsCashMachineThree(-100);
-
-        assertEquals(0, bank.getAverageAllDeposits(), 0.01);
-
+        //Than
+        assertEquals(0, averageAllDeposits);
     }
 
     //ilość wpłat
     @Test
     public void showTotalNumberOfDepositsMade() {
-        Bank bank = new Bank();
+        //Given
+        cashMachine1.makeTransaction(100);
+        cashMachine1.makeTransaction(-100);
+        cashMachine1.makeTransaction(100);
 
-        bank.transactionsCashMachineOne(100);
-        bank.transactionsCashMachineOne(-100);
-        bank.transactionsCashMachineOne(100);
+        cashMachine2.makeTransaction(100);
+        cashMachine2.makeTransaction(-100);
+        cashMachine2.makeTransaction(100);
 
-        bank.transactionsCashMachineTwo(100);
-        bank.transactionsCashMachineTwo(-100);
-        bank.transactionsCashMachineTwo(100);
+        cashMachine3.makeTransaction(100);
+        cashMachine3.makeTransaction(-100);
+        cashMachine3.makeTransaction(-50);
 
+        cashMachine4.makeTransaction(100);
+        cashMachine4.makeTransaction(100);
+        cashMachine4.makeTransaction(100);
 
-        bank.transactionsCashMachineThree(100);
-        bank.transactionsCashMachineThree(-100);
-        bank.transactionsCashMachineOne(-50);
+        //When
+        double totalNumOfDeposits = bank.totalNumDeposits();
 
-        bank.transactionsCashMachineFour(100);
-        bank.transactionsCashMachineFour(100);
-        bank.transactionsCashMachineThree(-100);
-
-        assertEquals(7, bank.totalNumDeposits(), 0.01);
+        //Than
+        assertEquals(8, totalNumOfDeposits);
     }
 
     //zero gdy brak wpłat
     @Test
     public void ShouldShowZeroWhenNoDeposits() {
-        Bank bank = new Bank();
+        //Given
+        cashMachine1.makeTransaction(-100);
+        cashMachine1.makeTransaction(-100);
+        cashMachine1.makeTransaction(-100);
 
-        bank.transactionsCashMachineOne(-100);
+        cashMachine2.makeTransaction(-100);
+        cashMachine2.makeTransaction(-100);
+        cashMachine2.makeTransaction(-100);
 
-        bank.transactionsCashMachineTwo(-100);
-        bank.transactionsCashMachineTwo(-100);
-        bank.transactionsCashMachineTwo(-100);
+        cashMachine3.makeTransaction(-100);
+        cashMachine3.makeTransaction(-100);
+        cashMachine3.makeTransaction(-50);
 
+        cashMachine4.makeTransaction(-100);
+        cashMachine4.makeTransaction(-100);
+        cashMachine4.makeTransaction(-100);
 
-        bank.transactionsCashMachineThree(-100);
-        bank.transactionsCashMachineOne(-50);
+        //When
+        double totalNumOfDeposits = bank.totalNumDeposits();
 
-        bank.transactionsCashMachineFour(-100);
-        bank.transactionsCashMachineFour(-100);
-        bank.transactionsCashMachineThree(-100);
-
-        assertEquals(0, bank.totalNumDeposits(), 0.01);
+        //Than
+        assertEquals(0, totalNumOfDeposits);
     }
-
 
     //Wypłaty ----------------------------------------------------------------
     //średnia wypłata
     @Test
     public void ShowAverageAmountPaidOut() {
+        //Given
+        cashMachine1.makeTransaction(100);
+        cashMachine1.makeTransaction(-100);
+        cashMachine1.makeTransaction(100);
 
-        Bank bank = new Bank();
+        cashMachine2.makeTransaction(100);
+        cashMachine2.makeTransaction(-100);
+        cashMachine2.makeTransaction(100);
 
-        bank.transactionsCashMachineOne(100);
-        bank.transactionsCashMachineOne(-100);
-        bank.transactionsCashMachineOne(100);
+        cashMachine3.makeTransaction(100);
+        cashMachine3.makeTransaction(-100);
+        cashMachine3.makeTransaction(-50);
 
-        bank.transactionsCashMachineTwo(100);
-        bank.transactionsCashMachineTwo(-100);
-        bank.transactionsCashMachineTwo(100);
+        cashMachine4.makeTransaction(100);
+        cashMachine4.makeTransaction(100);
+        cashMachine4.makeTransaction(100);
 
+        //When
+        double averageAllWithdrawals = bank.getAverageAllWithdrawals();
 
-        bank.transactionsCashMachineThree(100);
-        bank.transactionsCashMachineThree(-100);
-        bank.transactionsCashMachineOne(-50);
-
-        bank.transactionsCashMachineFour(100);
-        bank.transactionsCashMachineFour(100);
-        bank.transactionsCashMachineThree(-100);
-
-        assertEquals(-90, bank.getAverageAllWithdrawals(), 0.01);
-
+        //Than
+        assertEquals(-87.5, averageAllWithdrawals);
     }
 
     //zero gdy brak wypłat
     @Test
     public void ShowAverageAmountPaidOutWhenNoWithdrawalsMade() {
+        //Given
+        cashMachine1.makeTransaction(100);
+        cashMachine1.makeTransaction(100);
+        cashMachine1.makeTransaction(100);
 
-        Bank bank = new Bank();
+        cashMachine2.makeTransaction(100);
+        cashMachine2.makeTransaction(100);
+        cashMachine2.makeTransaction(100);
 
-        bank.transactionsCashMachineOne(100);
-        bank.transactionsCashMachineOne(100);
-        bank.transactionsCashMachineOne(100);
+        cashMachine3.makeTransaction(100);
+        cashMachine3.makeTransaction(100);
+        cashMachine3.makeTransaction(50);
 
-        bank.transactionsCashMachineTwo(100);
-        bank.transactionsCashMachineTwo(100);
-        bank.transactionsCashMachineTwo(100);
+        cashMachine4.makeTransaction(100);
+        cashMachine4.makeTransaction(100);
+        cashMachine4.makeTransaction(100);
 
+        //When
+        double averageAllWithdrawals = bank.getAverageAllWithdrawals();
 
-        bank.transactionsCashMachineThree(100);
-        bank.transactionsCashMachineThree(100);
-        bank.transactionsCashMachineOne(50);
-
-        bank.transactionsCashMachineFour(100);
-        bank.transactionsCashMachineFour(100);
-        bank.transactionsCashMachineThree(100);
-
-        assertEquals(0, bank.getAverageAllWithdrawals(), 0.01);
+        //Than
+        assertEquals(0, averageAllWithdrawals);
     }
 
     //ilość wypłat
     @Test
     public void showTotalNumberOfWithdrawalsMade() {
-        Bank bank = new Bank();
+        //Given
+        cashMachine1.makeTransaction(100);
+        cashMachine1.makeTransaction(-100);
+        cashMachine1.makeTransaction(100);
 
-        bank.transactionsCashMachineOne(100);
-        bank.transactionsCashMachineOne(-100);
-        bank.transactionsCashMachineOne(100);
+        cashMachine2.makeTransaction(100);
+        cashMachine2.makeTransaction(-100);
+        cashMachine2.makeTransaction(100);
 
-        bank.transactionsCashMachineTwo(100);
-        bank.transactionsCashMachineTwo(-100);
-        bank.transactionsCashMachineTwo(100);
+        cashMachine3.makeTransaction(100);
+        cashMachine3.makeTransaction(-100);
+        cashMachine3.makeTransaction(-50);
 
+        cashMachine4.makeTransaction(100);
+        cashMachine4.makeTransaction(100);
+        cashMachine4.makeTransaction(100);
 
-        bank.transactionsCashMachineThree(100);
-        bank.transactionsCashMachineThree(-100);
-        bank.transactionsCashMachineOne(-50);
+        //When
+        double totalNumOfWithdrawals = bank.getNumWithdrawals();
 
-        bank.transactionsCashMachineFour(100);
-        bank.transactionsCashMachineFour(100);
-        bank.transactionsCashMachineThree(-100);
-
-        assertEquals(5, bank.getNumWithdrawals(), 0.01);
+        //Than
+        assertEquals(4, totalNumOfWithdrawals);
     }
 
     //zero gdy brak wypłat
     @Test
     public void showTotalNumberOfWithdrawalsMadeWhenNoWithdrawals() {
-        Bank bank = new Bank();
 
-        bank.transactionsCashMachineOne(100);
-        bank.transactionsCashMachineOne(100);
+        //Given
+        cashMachine1.makeTransaction(100);
+        cashMachine1.makeTransaction(100);
+        cashMachine1.makeTransaction(100);
 
-        bank.transactionsCashMachineTwo(100);
-        bank.transactionsCashMachineTwo(100);
+        cashMachine2.makeTransaction(100);
+        cashMachine2.makeTransaction(100);
+        cashMachine2.makeTransaction(100);
 
+        cashMachine3.makeTransaction(100);
+        cashMachine3.makeTransaction(100);
+        cashMachine3.makeTransaction(50);
 
-        bank.transactionsCashMachineThree(100);
+        cashMachine4.makeTransaction(100);
+        cashMachine4.makeTransaction(100);
+        cashMachine4.makeTransaction(100);
+        
+        //When
+        double totalNumOfWithdrawals = bank.getNumWithdrawals();
 
-        bank.transactionsCashMachineFour(100);
-        bank.transactionsCashMachineFour(100);
+        //Than
+        assertEquals(0, totalNumOfWithdrawals);
 
-        assertEquals(0, bank.getNumWithdrawals(), 0.01);
     }
 
 }
